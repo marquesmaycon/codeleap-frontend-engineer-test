@@ -11,6 +11,13 @@ const postsMock: Post[] = [
     title: "First Post",
     content: "This is the content of the first post.",
     created_datetime: "2023-01-01T12:00:00Z"
+  },
+  {
+    id: 2,
+    username: "user2",
+    title: "Second Post",
+    content: "This is the content of the second post.",
+    created_datetime: "2023-01-02T15:30:00Z"
   }
 ]
 
