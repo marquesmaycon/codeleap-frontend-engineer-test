@@ -4,20 +4,21 @@ import { api } from "@/lib/api"
 
 import { getPostsQueryOptions } from "./use-get-posts"
 
-type CreatePostData = {
+type UpdatePostData = {
+  id: number
   title: string
   content: string
 }
 
-export const useCreatePost = () => {
+export const useUpdatePost = () => {
   const queryClient = useQueryClient()
   return useMutation({
-    mutationFn: async (data: CreatePostData) => {
-      const res = await api.post("careers/", { json: data })
+    mutationFn: async ({ id, ...data }: UpdatePostData) => {
+      const res = await api.patch(`careers/${id}/`, { json: data })
       return await res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getPostsQueryOptions.queryKey })
+      queryClient.invalidateQueries(getPostsQueryOptions)
     }
   })
 }
