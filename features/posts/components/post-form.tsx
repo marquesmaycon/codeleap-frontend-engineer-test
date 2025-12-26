@@ -1,9 +1,12 @@
 "use client"
 
+import { Collapsible } from "@radix-ui/react-collapsible"
+import { Pencil } from "lucide-react"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -28,33 +31,39 @@ export default function PostForm() {
       }}
     >
       <Card>
-        <CardContent className="space-y-6 pt-6">
-          <h2 className="text-[22px] font-bold">What’s on your mind?</h2>
+        <Collapsible className="group">
+          <CollapsibleTrigger className="px-6 pt-6">
+            <h2 className="flex cursor-text items-center gap-2 text-[22px] font-bold group-data-[state=open]:cursor-pointer">
+              What’s on your mind? <Pencil />
+            </h2>
+          </CollapsibleTrigger>
+          <CollapsibleContent className="space-y-6">
+            <CardContent className="space-y-6 pt-6">
+              <div className="space-y-2">
+                <Label htmlFor="title">Title</Label>
+                <Input
+                  id="title"
+                  placeholder="Hello world"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="title">Title</Label>
-            <Input
-              id="title"
-              placeholder="Hello world"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="content">Content</Label>
-            <Textarea
-              id="content"
-              placeholder="Content here"
-              onChange={(e) => setContent(e.target.value)}
-            />
-          </div>
-        </CardContent>
-
-        <CardFooter>
-          <Button className="ml-auto text-base" type="submit" loading={isPending}>
-            Create
-          </Button>
-        </CardFooter>
+              <div className="space-y-2">
+                <Label htmlFor="content">Content</Label>
+                <Textarea
+                  id="content"
+                  placeholder="Content here"
+                  onChange={(e) => setContent(e.target.value)}
+                />
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button className="ml-auto text-base" type="submit" loading={isPending}>
+                Create
+              </Button>
+            </CardFooter>
+          </CollapsibleContent>
+        </Collapsible>
       </Card>
     </form>
   )
