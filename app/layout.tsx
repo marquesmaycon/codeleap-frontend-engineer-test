@@ -3,8 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 
-import Header from "@/components/layout/header"
-
 import Providers from "./providers"
 
 const roboto = Roboto({
@@ -28,10 +26,7 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} mx-auto flex min-h-screen flex-col font-serif antialiased`}
       >
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
