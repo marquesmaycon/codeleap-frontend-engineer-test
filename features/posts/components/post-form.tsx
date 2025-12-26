@@ -1,0 +1,61 @@
+"use client"
+
+import { useState } from "react"
+
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
+
+import { useCreatePost } from "../hooks/use-create-post"
+
+export default function PostForm() {
+  const [title, setTitle] = useState("")
+  const [content, setContent] = useState("")
+
+  const { mutateAsync: createPost, isPending } = useCreatePost()
+
+  async function handleSubmit() {
+    await createPost({ title, content })
+  }
+
+  return (
+    <form
+      onSubmit={async (ev) => {
+        ev.preventDefault()
+        await handleSubmit()
+      }}
+    >
+      <Card>
+        <CardContent className="space-y-6 pt-6">
+          <h2 className="text-[22px] font-bold">What’s on your mind?</h2>
+
+          <div className="space-y-2">
+            <Label htmlFor="title">Title</Label>
+            <Input
+              id="title"
+              placeholder="Hello world"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="content">Content</Label>
+            <Textarea
+              id="content"
+              placeholder="Content here"
+              onChange={(e) => setContent(e.target.value)}
+            />
+          </div>
+        </CardContent>
+
+        <CardFooter>
+          <Button className="ml-auto text-base" type="submit" loading={isPending}>
+            Create
+          </Button>
+        </CardFooter>
+      </Card>
+    </form>
+  )
+}
