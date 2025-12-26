@@ -2,10 +2,9 @@ import Link from "next/link"
 
 import { getUser } from "@/features/auth/actions"
 
-import { ThemeSwitcher } from "../theme-switcher"
-
 export default async function Header() {
   const username = getUser()
+  
   return (
     <header className="bg-primary px-9.25 py-6.75">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -18,7 +17,6 @@ export default async function Header() {
               Welcome, <b>{username}</b>
             </span>
           )}
-          <ThemeSwitcher />
         </div>
       </div>
     </header>

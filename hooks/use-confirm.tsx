@@ -2,11 +2,11 @@ import { JSX, useState } from "react"
 
 import { ResponsiveModal } from "@/components/responsive-modal"
 import { Button, ButtonProps } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { DialogTitle } from "@/components/ui/dialog"
 
 type UseConfirmProps = {
   title: string
-  message: string
+  actionLabel: string
   variant: ButtonProps["variant"]
 }
 
@@ -18,7 +18,7 @@ type StateProps = {
 
 export const useConfirm = ({
   title,
-  message,
+  actionLabel,
   variant = "default"
 }: UseConfirmProps): UseConfirmReturn => {
   const [promise, setPromise] = useState<StateProps>(null)
@@ -46,23 +46,21 @@ export const useConfirm = ({
   const ConfirmationDialog = () => {
     return (
       <ResponsiveModal open={promise != null} onOpenChange={handleClose}>
-        <Card className="h-full w-full border-none shadow-none">
-          <CardContent className="pt-8">
-            <CardHeader>
-              <CardTitle>{title}</CardTitle>
-              <CardDescription>{message}</CardDescription>
-            </CardHeader>
+        <DialogTitle className="sr-only">{title}</DialogTitle>
+        <div className="border-none shadow-none">
+          <div className="p-6">
+            <h4 className="text-[22px] font-bold">{title}</h4>
 
-            <div className="flex w-full flex-col items-center justify-end gap-x-2 gap-y-2 pt-4 lg:flex-row">
-              <Button onClick={handleCancel} variant="outline" className="w-full lg:w-auto">
+            <div className="flex w-full items-center justify-end gap-4 pt-4 md:flex-row">
+              <Button onClick={handleCancel} variant="outline">
                 Cancel
               </Button>
-              <Button onClick={handleConfirm} variant={variant} className="w-full lg:w-auto">
-                Confirm
+              <Button onClick={handleConfirm} variant={variant}>
+                {actionLabel}
               </Button>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </ResponsiveModal>
     )
   }
