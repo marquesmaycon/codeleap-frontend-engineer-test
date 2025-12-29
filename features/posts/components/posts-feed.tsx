@@ -29,7 +29,7 @@ export function PostsFeed({ filter }: PostsFeedProps) {
 
   return (
     <>
-      <div className="space-y-6 py-6">
+      <div className="space-y-4 py-4 md:space-y-6 md:py-6">
         {filteredPosts.map((post) => (
           <PostCard key={post.id} {...post} onEdit={() => onEditPost(post)} />
         ))}

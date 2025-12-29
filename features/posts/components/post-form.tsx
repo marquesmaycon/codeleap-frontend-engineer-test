@@ -34,13 +34,13 @@ export default function PostForm() {
     >
       <Card>
         <Collapsible className="group">
-          <CollapsibleTrigger className="px-6 pt-6">
+          <CollapsibleTrigger className="px-4 pt-4 md:px-6 md:pt-6">
             <h2 className="flex cursor-text items-center gap-2 text-[22px] font-bold group-data-[state=open]:cursor-pointer">
               What’s on your mind? <Pencil />
             </h2>
           </CollapsibleTrigger>
-          <CollapsibleContent className="space-y-6">
-            <CardContent className="space-y-6 pt-6">
+          <CollapsibleContent className="space-y-4 md:space-y-6">
+            <CardContent className="space-y-4 pt-4 md:space-y-6 md:pt-6">
               <div className="space-y-2">
                 <Label htmlFor="title">Title</Label>
                 <Input

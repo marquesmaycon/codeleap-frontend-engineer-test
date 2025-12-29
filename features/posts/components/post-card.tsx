@@ -1,5 +1,6 @@
 "use client"
-
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
 import { EditIcon, MessageSquare, ThumbsUp, TrashIcon } from "lucide-react"
 import Link from "next/link"
 
@@ -21,6 +22,8 @@ import {
 import { useDeletePost } from "../hooks/use-delete-post"
 import { useLikePost } from "../hooks/use-like-post"
 import PostComments from "./post-comments"
+
+dayjs.extend(relativeTime)
 
 type PostCardProps = Post & {
   onEdit: () => void
@@ -60,33 +63,35 @@ export function PostCard({
     <Card>
       <CardHeader>
         <CardTitle>{title}</CardTitle>
-        <CardAction className="flex items-center gap-6">
+        <CardAction className="flex items-center gap-4 md:gap-6">
           {isAuthorPost && (
             <>
               <Button
-                size="icon-lg"
+                size="icon"
                 variant="ghost"
                 className="group"
                 onClick={() => handleDeletePost()}
               >
-                <TrashIcon className="group-hover:text-destructive size-7.5 text-white transition-colors" />
+                <TrashIcon className="group-hover:text-destructive size-6 text-white transition-colors md:size-7.5" />
               </Button>
-              <Button size="icon-lg" variant="ghost" className="group" onClick={() => onEdit()}>
-                <EditIcon className="size-7.5 text-white transition-colors group-hover:text-sky-400" />
+              <Button size="icon" variant="ghost" className="group" onClick={() => onEdit()}>
+                <EditIcon className="size-6 text-white transition-colors group-hover:text-sky-400 md:size-7.5" />
               </Button>
             </>
           )}
         </CardAction>
       </CardHeader>
+
       <CardContent>
         <div className="mb-4 flex items-center justify-between">
           <Link href={`/profile/${username}`}>
             <h3 className="text-lg font-bold text-[#777777]">@{capitalizeWords(username)}</h3>
           </Link>
-          <span className="text-right text-[#777777]">{created_datetime}</span>
+          <span className="text-right text-[#777777]">{dayjs(created_datetime).fromNow()}</span>
         </div>
         <p className="whitespace-pre-line">{content}</p>
       </CardContent>
+
       <CardFooter>
         <Collapsible className="flex w-full flex-col">
           <div className="ml-auto space-x-2">
