@@ -97,7 +97,7 @@ export function PostCard({
           <div className="ml-auto space-x-2">
             <Button
               variant={postLiked ? "default" : "outline"}
-              className="ml-auto"
+              className="ml-auto dark:text-white"
               size="sm"
               onClick={() => likePost({ id })}
             >

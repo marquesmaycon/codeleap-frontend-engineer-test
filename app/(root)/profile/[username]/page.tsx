@@ -17,7 +17,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
   const isMyProfile = currentUser?.toLowerCase() === username.toLowerCase()
 
   return (
-    <div className="mx-auto w-full max-w-200 flex-1 p-4 pt-22 md:p-6 md:pt-22">
+    <div className="mx-auto w-full max-w-200 flex-1 p-4 pt-26 md:p-6 md:pt-26">
       <div className="flex items-center justify-between gap-4">
         <div className="bg-primary w-fit px-4 py-2">
           <h1 className="text-4xl font-bold text-white">@{capitalizeWords(username)}</h1>

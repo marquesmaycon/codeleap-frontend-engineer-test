@@ -27,7 +27,7 @@ export default function PostComments({ id, comments }: PostCommentsProps) {
     <div>
       <ul className="pt-8">
         {comments?.map((c, index) => (
-          <li key={index} className="relative mb-8 border-b border-gray-200 pb-2">
+          <li key={index} className="relative mb-8 border-b border-gray-200 pb-4">
             <p className="text-muted-foreground text-sm font-semibold">
               @{capitalizeWords(c.username)}
             </p>
