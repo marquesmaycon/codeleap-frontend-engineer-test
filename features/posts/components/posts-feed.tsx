@@ -1,5 +1,6 @@
 "use client"
 
+import { ArrowDown, ArrowUp } from "lucide-react"
 import { type ReactNode, useState } from "react"
 
 import {
@@ -58,8 +59,14 @@ export function PostsFeed({ filter }: PostsFeedProps) {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Order</SelectLabel>
-              <SelectItem value="newest">Newest</SelectItem>
-              <SelectItem value="oldest">Oldest</SelectItem>
+              <SelectItem value="newest">
+                <ArrowUp />
+                Newest
+              </SelectItem>
+              <SelectItem value="oldest">
+                <ArrowDown />
+                Oldest
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>

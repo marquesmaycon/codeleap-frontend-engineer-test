@@ -11,7 +11,7 @@ export default async function SignUpPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
+    <div className="bg-primary/20 flex min-h-screen items-center justify-center p-4">
       <SignUpForm />
     </div>
   )
