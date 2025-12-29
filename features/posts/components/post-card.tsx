@@ -1,6 +1,7 @@
 "use client"
 
 import { EditIcon, MessageSquare, ThumbsUp, TrashIcon } from "lucide-react"
+import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
@@ -79,7 +80,9 @@ export default function PostCard({
       </CardHeader>
       <CardContent>
         <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-bold text-[#777777]">@{capitalizeWords(username)}</h3>
+          <Link href={`/profile/${username}`}>
+            <h3 className="text-lg font-bold text-[#777777]">@{capitalizeWords(username)}</h3>
+          </Link>
           <span className="text-right text-[#777777]">{created_datetime}</span>
         </div>
         <p className="whitespace-pre-line">{content}</p>
