@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { capitalizeWords } from "@/lib/utils"
 
 import { useCommentPost } from "../hooks/use-comment-post"
 import { useDeleteComment } from "../hooks/use-delete-comment"
@@ -27,8 +28,10 @@ export default function PostComments({ id, comments }: PostCommentsProps) {
       <ul className="pt-8">
         {comments?.map((c, index) => (
           <li key={index} className="relative mb-8 border-b border-gray-200 pb-2">
-            <p className="font-semibold">{c.username}</p>
-            <p className="pr-12 whitespace-pre-line">{c.comment}</p>
+            <p className="text-muted-foreground text-sm font-semibold">
+              @{capitalizeWords(c.username)}
+            </p>
+            <p className="pr-12 text-sm whitespace-pre-line">{c.comment}</p>
             <Button
               variant="outline"
               size="icon"

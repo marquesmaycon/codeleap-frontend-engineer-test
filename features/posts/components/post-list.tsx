@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 
 import { useGetPosts } from "../hooks/use-get-posts"
 import type { Post } from "../types"
@@ -36,6 +36,7 @@ export default function PostList() {
 
       <Dialog open={dialog} onOpenChange={setDialog}>
         <DialogContent>
+          <DialogTitle className="sr-only">Edit Post</DialogTitle>
           <EditPostForm post={crrPost} onCancel={onCancelEdit} />
         </DialogContent>
       </Dialog>

@@ -7,7 +7,7 @@ import type { Post } from "../types"
 const postsMock: Post[] = [
   {
     id: 1,
-    username: "user1",
+    username: "maycon",
     title: "First Post",
     content: "This is the content of the first post.",
     created_datetime: "2023-01-01T12:00:00Z"

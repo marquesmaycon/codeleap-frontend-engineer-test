@@ -16,12 +16,14 @@ import { useCreatePost } from "../hooks/use-create-post"
 export default function PostForm() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-
+  
   const { mutateAsync: createPost, isPending } = useCreatePost()
 
   async function handleSubmit() {
     await createPost({ title, content })
   }
+
+  const disableSubmit = title.length === 0 || content.length === 0
 
   return (
     <form
@@ -58,7 +60,12 @@ export default function PostForm() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button className="ml-auto text-base" type="submit" loading={isPending}>
+              <Button
+                className="ml-auto text-base"
+                type="submit"
+                loading={isPending}
+                disabled={disableSubmit}
+              >
                 Create
               </Button>
             </CardFooter>
