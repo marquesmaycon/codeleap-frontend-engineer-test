@@ -1,28 +1,12 @@
 "use client"
 
-import { useState } from "react"
-
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
-
+import { useEditPostDialog } from "../hooks/use-edit-post-dialog"
 import { useGetPosts } from "../hooks/use-get-posts"
-import type { Post } from "../types"
-import EditPostForm from "./edit-post-form"
 import PostCard from "./post-card"
 
 export default function PostList() {
   const { data } = useGetPosts()
-  const [crrPost, setCrrPost] = useState<Post>()
-  const [dialog, setDialog] = useState(false)
-
-  function onEditPost(post: Post) {
-    setDialog(true)
-    setCrrPost(post)
-  }
-
-  function onCancelEdit() {
-    setDialog(false)
-    setCrrPost(undefined)
-  }
+  const { onEditPost, EditPostDialog } = useEditPostDialog()
 
   return (
     <div>
@@ -34,12 +18,7 @@ export default function PostList() {
         ))}
       </ul>
 
-      <Dialog open={dialog} onOpenChange={setDialog}>
-        <DialogContent>
-          <DialogTitle className="sr-only">Edit Post</DialogTitle>
-          <EditPostForm post={crrPost} onCancel={onCancelEdit} />
-        </DialogContent>
-      </Dialog>
+      <EditPostDialog />
     </div>
   )
 }

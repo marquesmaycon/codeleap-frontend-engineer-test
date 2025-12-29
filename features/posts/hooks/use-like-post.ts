@@ -16,16 +16,19 @@ export const useLikePost = () => {
     mutationFn: async ({ id }: LikePostData) => {
       queryClient.setQueryData(getPostsQueryOptions.queryKey, (oldData) => {
         if (!oldData || !username) return oldData
-
         return {
           ...oldData,
           results: oldData.results.map((p) => {
             if (p.id === id) {
-              const hasLiked = p.likes?.some((like) => like.username === username)
+              const hasLiked = p.likes?.some(
+                (like) => like.username.toLowerCase() === username.toLowerCase()
+              )
               return {
                 ...p,
                 likes: hasLiked
-                  ? p.likes?.filter((like) => like.username !== username)
+                  ? p.likes?.filter(
+                      (like) => like.username.toLowerCase() !== username.toLowerCase()
+                    )
                   : [...(p.likes ?? []), { username }]
               }
             }

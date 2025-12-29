@@ -1,8 +1,7 @@
 "use client"
 
-import { getQueryClient } from "@/lib/tanstack-query"
-
-import { getPostsQueryOptions } from "../hooks/use-get-posts"
+import { useEditPostDialog } from "../hooks/use-edit-post-dialog"
+import { useGetPosts } from "../hooks/use-get-posts"
 import PostCard from "./post-card"
 
 type UserPostsProps = {
@@ -10,18 +9,22 @@ type UserPostsProps = {
 }
 
 export default function UserPosts({ username }: UserPostsProps) {
-  const queryClient = getQueryClient()
+  const { data: posts } = useGetPosts()
+  const { onEditPost, EditPostDialog } = useEditPostDialog()
 
-  const posts = queryClient.getQueryData(getPostsQueryOptions.queryKey)
   const postList = posts?.results.filter(
     (p) => p.username.toLowerCase() === username?.toLowerCase()
   )
 
   return (
-    <div className="space-y-6 p-6">
-      {postList?.map((p) => (
-        <PostCard key={p.id} {...p} onEdit={() => {}} />
-      ))}
-    </div>
+    <>
+      <div className="space-y-6 py-6">
+        {postList?.map((p) => (
+          <PostCard key={p.id} {...p} onEdit={() => onEditPost(p)} />
+        ))}
+      </div>
+
+      <EditPostDialog />
+    </>
   )
 }
