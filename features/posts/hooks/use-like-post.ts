@@ -12,6 +12,7 @@ export const useLikePost = () => {
   const queryClient = useQueryClient()
   const { username } = useUser()
   return useMutation({
+    mutationKey: ["post", "like"],
     mutationFn: async ({ id }: LikePostData) => {
       queryClient.setQueryData(getPostsQueryOptions.queryKey, (oldData) => {
         if (!oldData || !username) return oldData

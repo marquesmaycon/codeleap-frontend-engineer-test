@@ -11,6 +11,7 @@ type CommentPostData = {
 export const useDeleteComment = () => {
   const queryClient = useQueryClient()
   return useMutation({
+    mutationKey: ["post", "delete-comment"],
     mutationFn: async ({ id, comment, username }: CommentPostData) => {
       queryClient.setQueryData(getPostsQueryOptions.queryKey, (oldData) => {
         if (!oldData) return oldData

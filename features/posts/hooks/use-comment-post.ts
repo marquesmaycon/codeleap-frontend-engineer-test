@@ -13,6 +13,7 @@ export const useCommentPost = () => {
   const queryClient = useQueryClient()
   const { username } = useUser()
   return useMutation({
+    mutationKey: ["post", "comment"],
     mutationFn: async ({ id, comment }: CommentPostData) => {
       queryClient.setQueryData(getPostsQueryOptions.queryKey, (oldData) => {
         if (!oldData || !username) return oldData

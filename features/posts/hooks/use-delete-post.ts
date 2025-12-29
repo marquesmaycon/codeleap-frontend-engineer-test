@@ -8,6 +8,7 @@ import { getPostsQueryOptions } from "./use-get-posts"
 export const useDeletePost = () => {
   const queryClient = useQueryClient()
   return useMutation({
+    mutationKey: ["post", "delete"],
     mutationFn: async (postId: number) => {
       const res = await api.delete(`careers/${postId}/`)
       return await res.json()

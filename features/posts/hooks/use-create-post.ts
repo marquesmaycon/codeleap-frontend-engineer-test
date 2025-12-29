@@ -12,6 +12,7 @@ type CreatePostData = {
 export const useCreatePost = () => {
   const queryClient = useQueryClient()
   return useMutation({
+    mutationKey: ["post", "create"],
     mutationFn: async (data: CreatePostData) => {
       const res = await api.post("careers/", { json: data })
       return await res.json()
