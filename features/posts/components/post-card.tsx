@@ -26,7 +26,7 @@ type PostCardProps = Post & {
   onEdit: () => void
 }
 
-export default function PostCard({
+export function PostCard({
   id,
   username,
   title,

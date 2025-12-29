@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { getUser, signOut } from "@/features/auth/actions"
-import UserPosts from "@/features/posts/components/user-posts"
+import { UserComments } from "@/features/user/components/user-comments"
+import { UserLikes } from "@/features/user/components/user-likes"
+import { UserPosts } from "@/features/user/components/user-posts"
 import { capitalizeWords } from "@/lib/utils"
 
 type ProfilePageProps = {
-  params: Promise<{
-    username: string
-  }>
+  params: Promise<{ username: string }>
 }
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
@@ -40,8 +40,12 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <TabsContent value="posts">
           <UserPosts username={username} />
         </TabsContent>
-        <TabsContent value="comments">Comments</TabsContent>
-        <TabsContent value="likes">Likes</TabsContent>
+        <TabsContent value="comments">
+          <UserComments username={username} />
+        </TabsContent>
+        <TabsContent value="likes">
+          <UserLikes username={username} />
+        </TabsContent>
       </Tabs>
     </div>
   )
