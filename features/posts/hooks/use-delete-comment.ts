@@ -13,6 +13,9 @@ export const useDeleteComment = () => {
   return useMutation({
     mutationKey: ["post", "delete-comment"],
     mutationFn: async ({ id, comment, username }: CommentPostData) => {
+      return { id, comment, username }
+    },
+    onSuccess: ({ id, comment, username }) => {
       queryClient.setQueryData(getPostsInfiniteQueryOptions.queryKey, (oldData) => {
         if (!oldData) return oldData
         return {

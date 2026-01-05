@@ -15,9 +15,11 @@ export const useCommentPost = () => {
   return useMutation({
     mutationKey: ["post", "comment"],
     mutationFn: async ({ id, comment }: CommentPostData) => {
+      return { id, comment }
+    },
+    onSuccess: (_, { id, comment }) => {
       queryClient.setQueryData(getPostsInfiniteQueryOptions.queryKey, (oldData) => {
         if (!oldData || !username) return oldData
-
         return {
           ...oldData,
           pages: oldData.pages.map((page) => ({

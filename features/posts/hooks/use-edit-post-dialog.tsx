@@ -28,8 +28,5 @@ export function useEditPostDialog() {
     </Dialog>
   )
 
-  return {
-    onEditPost,
-    EditPostDialog
-  }
+  return { onEditPost, EditPostDialog }
 }
