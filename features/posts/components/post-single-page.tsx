@@ -2,9 +2,11 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { EditIcon, ThumbsUp, TrashIcon } from "lucide-react"
+import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { useUser } from "@/features/auth/hooks/use-user"
+import { capitalizeWords } from "@/lib/utils"
 
 import { useConfirmDeletePost } from "../hooks/use-confirm-delete-post"
 import { useEditPostDialog } from "../hooks/use-edit-post-dialog"
@@ -31,7 +33,7 @@ export function PostSinglePage({ id }: { id: string }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between gap-4">
+      <div className="">
         <div className="bg-primary flex w-full items-center justify-between p-4">
           <h1 className="text-4xl font-bold text-white">{post.title}</h1>
           {true && (
@@ -55,27 +57,32 @@ export function PostSinglePage({ id }: { id: string }) {
             </div>
           )}
         </div>
+        <Link href={`/profile/${post.username}`}>
+          <h3 className="text-lg font-bold text-[#777777]">@{capitalizeWords(post.username)}</h3>
+        </Link>
       </div>
 
       <div className="mt-8">{post.content}</div>
 
-      <div className="flex items-center gap-2">
-        <Button
-          variant={postLiked ? "default" : "outline"}
-          className="dark:text-white"
-          size="sm"
-          onClick={() => likePost({ id: +id })}
-        >
-          <ThumbsUp /> {post.likes?.length ?? 0}
-        </Button>
-        <ul className="text-muted-foreground flex items-center gap-2 text-sm">
-          {post.likes?.map((l) => (
-            <li key={l.username}>{l.username}</li>
-          ))}
-        </ul>
-      </div>
+      <div className="mt-auto space-y-8">
+        <div className="flex items-center gap-2">
+          <Button
+            variant={postLiked ? "default" : "outline"}
+            className="dark:text-white"
+            size="sm"
+            onClick={() => likePost({ id: +id })}
+          >
+            <ThumbsUp /> {post.likes?.length ?? 0}
+          </Button>
+          <ul className="text-muted-foreground flex items-center gap-2 text-sm">
+            {post.likes?.map((l) => (
+              <li key={l.username}>{l.username}</li>
+            ))}
+          </ul>
+        </div>
 
-      <PostComments {...post} className="mt-auto" />
+        <PostComments {...post} />
+      </div>
 
       <ConfirmDialog />
       <EditPostDialog />

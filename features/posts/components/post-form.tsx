@@ -10,17 +10,19 @@ import { CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsi
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
+import { useUser } from "@/features/auth/hooks/use-user"
 
 import { useCreatePost } from "../hooks/use-create-post"
 
 export default function PostForm() {
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
-  
+  const { username } = useUser()
+
   const { mutateAsync: createPost, isPending } = useCreatePost()
 
   async function handleSubmit() {
-    await createPost({ title, content })
+    await createPost({ title, content, username: username! })
   }
 
   const disableSubmit = title.length === 0 || content.length === 0

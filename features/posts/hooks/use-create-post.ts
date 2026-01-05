@@ -5,12 +5,14 @@ import { api } from "@/lib/api"
 import { getPostsInfiniteQueryOptions } from "./use-get-posts"
 
 type CreatePostData = {
+  username: string
   title: string
   content: string
 }
 
 export const useCreatePost = () => {
   const queryClient = useQueryClient()
+
   return useMutation({
     mutationKey: ["post", "create"],
     mutationFn: async (data: CreatePostData) => {

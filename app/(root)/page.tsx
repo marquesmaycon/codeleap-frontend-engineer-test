@@ -7,7 +7,7 @@ export default function Home() {
       <div className="mx-auto max-w-200 space-y-4 p-4 md:space-y-6 md:p-6">
         <PostForm />
 
-        <PostsFeed />
+        <PostsFeed infiniteLoad />
       </div>
     </div>
   )

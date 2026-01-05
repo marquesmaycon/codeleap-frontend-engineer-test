@@ -13,8 +13,7 @@ import { useCommentPost } from "../hooks/use-comment-post"
 import { useDeleteComment } from "../hooks/use-delete-comment"
 import type { Post } from "../types"
 
-type PostCommentsProps = Omit<React.HTMLAttributes<HTMLDivElement>, "id"> &
-  Pick<Post, "id" | "username" | "comments">
+type PostCommentsProps = Pick<Post, "id" | "username" | "comments">
 
 export function PostComments({ id, comments, username, ...props }: PostCommentsProps) {
   const [comment, setComment] = useState("")
@@ -32,7 +31,7 @@ export function PostComments({ id, comments, username, ...props }: PostCommentsP
 
   return (
     <div {...props}>
-      <ul className="pt-8">
+      <ul>
         {comments?.map((c, index) => {
           const isCommentAuthor = crrUsername?.toLowerCase() === c.username?.toLowerCase()
           return (

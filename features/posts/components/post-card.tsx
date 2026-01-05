@@ -20,7 +20,7 @@ import {
 } from "../../../components/ui/card"
 import { useConfirmDeletePost } from "../hooks/use-confirm-delete-post"
 import { useLikePost } from "../hooks/use-like-post"
-import PostComments from "./post-comments"
+import { PostComments } from "./post-comments"
 
 dayjs.extend(relativeTime)
 
@@ -85,7 +85,7 @@ export function PostCard({
 
       <CardFooter>
         <Collapsible className="flex w-full flex-col">
-          <div className="ml-auto space-x-2">
+          <div className="mb-8 ml-auto space-x-2">
             <Button
               variant={postLiked ? "default" : "outline"}
               className="ml-auto dark:text-white"

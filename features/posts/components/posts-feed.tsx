@@ -1,7 +1,7 @@
 "use client"
 
 import { ArrowDown, ArrowUp, Ellipsis } from "lucide-react"
-import { type ReactNode, useState } from "react"
+import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -24,10 +24,10 @@ type SortOption = "newest" | "oldest"
 
 type PostsFeedProps = {
   filter?: (post: Post) => boolean
-  emptyState?: ReactNode
+  infiniteLoad?: boolean
 }
 
-export function PostsFeed({ filter }: PostsFeedProps) {
+export function PostsFeed({ filter, infiniteLoad = false }: PostsFeedProps) {
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useGetPostsInfinite()
   const { onEditPost, EditPostDialog } = useEditPostDialog()
   const [sortBy, setSortBy] = useState<SortOption>("oldest")
@@ -80,19 +80,20 @@ export function PostsFeed({ filter }: PostsFeedProps) {
           <PostCard key={post.id} {...post} onEdit={() => onEditPost(post)} />
         ))}
 
-        {hasNextPage ? (
-          <div className="mt-12 flex items-center justify-center">
-            <Button
-              variant="secondary"
-              loading={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-            >
-              Load more <Ellipsis />
-            </Button>
-          </div>
-        ) : (
-          <small className="text-muted-foreground text-center">No more posts to load.</small>
-        )}
+        {infiniteLoad &&
+          (hasNextPage ? (
+            <div className="mt-12 flex items-center justify-center">
+              <Button
+                variant="secondary"
+                loading={isFetchingNextPage}
+                onClick={() => fetchNextPage()}
+              >
+                Load more <Ellipsis />
+              </Button>
+            </div>
+          ) : (
+            <p className="text-muted-foreground text-center text-sm">No more posts to load.</p>
+          ))}
       </div>
 
       <EditPostDialog />
