@@ -87,7 +87,7 @@ export function PostsFeed({ filter }: PostsFeedProps) {
               loading={isFetchingNextPage}
               onClick={() => fetchNextPage()}
             >
-              Load more posts <Ellipsis />
+              Load more <Ellipsis />
             </Button>
           </div>
         ) : (
