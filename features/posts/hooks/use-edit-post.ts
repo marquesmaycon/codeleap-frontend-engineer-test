@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { api } from "@/lib/api"
 
-import { getPostsQueryOptions } from "./use-get-posts"
+import { getPostsInfiniteQueryOptions } from "./use-get-posts"
 
 type EditPostData = {
   id: number
@@ -19,7 +19,7 @@ export const useEditPost = () => {
       return await res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(getPostsQueryOptions)
+      queryClient.invalidateQueries(getPostsInfiniteQueryOptions)
     }
   })
 }

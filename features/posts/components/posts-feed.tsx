@@ -1,8 +1,9 @@
 "use client"
 
-import { ArrowDown, ArrowUp } from "lucide-react"
+import { ArrowDown, ArrowUp, Ellipsis } from "lucide-react"
 import { type ReactNode, useState } from "react"
 
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
@@ -14,7 +15,7 @@ import {
 } from "@/components/ui/select"
 
 import { useEditPostDialog } from "../hooks/use-edit-post-dialog"
-import { useGetPosts } from "../hooks/use-get-posts"
+import { useGetPostsInfinite } from "../hooks/use-get-posts"
 import type { Post } from "../types"
 import { PostCard } from "./post-card"
 import { PostsSkeleton } from "./posts-skeleton"
@@ -27,11 +28,13 @@ type PostsFeedProps = {
 }
 
 export function PostsFeed({ filter }: PostsFeedProps) {
-  const { data: posts, isLoading } = useGetPosts()
+  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useGetPostsInfinite()
   const { onEditPost, EditPostDialog } = useEditPostDialog()
-  const [sortBy, setSortBy] = useState<SortOption>("newest")
+  const [sortBy, setSortBy] = useState<SortOption>("oldest")
 
-  const filteredPosts = posts?.results.filter((post) => (filter ? filter(post) : true))
+  const filteredPosts = data?.pages
+    .flatMap((page) => page.results)
+    .filter((post) => (filter ? filter(post) : true))
 
   const sortedPosts = filteredPosts
     ? [...filteredPosts].sort((a, b) => {
@@ -76,6 +79,20 @@ export function PostsFeed({ filter }: PostsFeedProps) {
         {sortedPosts.map((post) => (
           <PostCard key={post.id} {...post} onEdit={() => onEditPost(post)} />
         ))}
+
+        {hasNextPage ? (
+          <div className="mt-12 flex items-center justify-center">
+            <Button
+              variant="secondary"
+              loading={isFetchingNextPage}
+              onClick={() => fetchNextPage()}
+            >
+              Load more posts <Ellipsis />
+            </Button>
+          </div>
+        ) : (
+          <small className="text-muted-foreground text-center">No more posts to load.</small>
+        )}
       </div>
 
       <EditPostDialog />

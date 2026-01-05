@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 import { api } from "@/lib/api"
 
-import { getPostsQueryOptions } from "./use-get-posts"
+import { getPostsInfiniteQueryOptions } from "./use-get-posts"
 
 type CreatePostData = {
   title: string
@@ -18,7 +18,7 @@ export const useCreatePost = () => {
       return await res.json()
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: getPostsQueryOptions.queryKey })
+      queryClient.invalidateQueries({ queryKey: getPostsInfiniteQueryOptions.queryKey })
     }
   })
 }
