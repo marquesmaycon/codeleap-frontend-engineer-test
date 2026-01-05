@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { getUser, signOut } from "@/features/auth/actions"
+import { getUser } from "@/features/auth/actions"
+import { LogoutButton } from "@/features/auth/components/sign-out-button"
 import { UserComments } from "@/features/user/components/user-comments"
 import { UserLikes } from "@/features/user/components/user-likes"
 import { UserPosts } from "@/features/user/components/user-posts"
@@ -22,13 +22,7 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
         <div className="bg-primary w-fit px-4 py-2">
           <h1 className="text-4xl font-bold text-white">@{capitalizeWords(username)}</h1>
         </div>
-        {isMyProfile && (
-          <form action={signOut}>
-            <Button variant="outline" type="submit">
-              Logout
-            </Button>
-          </form>
-        )}
+        {isMyProfile && <LogoutButton />}
       </div>
 
       <Tabs defaultValue="posts" className="mt-8">

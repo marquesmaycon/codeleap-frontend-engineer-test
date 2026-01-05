@@ -9,9 +9,9 @@ export const getUser = async () => {
   return cookieStore.get(COOKIE_NAME)?.value || null
 }
 
-export const signUp = async (username: string) => {
+export const signUp = async (formData: FormData) => {
   const cookieStore = await cookies()
-  cookieStore.set(COOKIE_NAME, username)
+  cookieStore.set(COOKIE_NAME, formData.get("username") as string)
 }
 
 export const signOut = async () => {
