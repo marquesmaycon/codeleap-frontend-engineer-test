@@ -26,6 +26,7 @@ dayjs.extend(relativeTime)
 
 type PostCardProps = Post & {
   onEdit: () => void
+  commentsOpen: boolean
 }
 
 export function PostCard({
@@ -36,7 +37,8 @@ export function PostCard({
   created_datetime,
   likes,
   comments,
-  onEdit
+  onEdit,
+  commentsOpen
 }: PostCardProps) {
   const { username: crrUsername } = useUser()
 
@@ -75,7 +77,7 @@ export function PostCard({
 
       <CardContent>
         <div className="mb-4 flex items-center justify-between">
-          <Link href={`/profile/${username}`}>
+          <Link href={`/profile/${username}`} className="hover:underline">
             <h3 className="text-lg font-bold text-[#777777]">@{capitalizeWords(username)}</h3>
           </Link>
           <span className="text-right text-[#777777]">{dayjs(created_datetime).fromNow()}</span>
@@ -84,7 +86,7 @@ export function PostCard({
       </CardContent>
 
       <CardFooter>
-        <Collapsible className="flex w-full flex-col">
+        <Collapsible className="flex w-full flex-col" defaultOpen={commentsOpen}>
           <div className="mb-8 ml-auto space-x-2">
             <Button
               variant={postLiked ? "default" : "outline"}

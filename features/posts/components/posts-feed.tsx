@@ -25,9 +25,10 @@ type SortOption = "newest" | "oldest"
 type PostsFeedProps = {
   filter?: (post: Post) => boolean
   infiniteLoad?: boolean
+  commentsOpen?: boolean
 }
 
-export function PostsFeed({ filter, infiniteLoad = false }: PostsFeedProps) {
+export function PostsFeed({ filter, infiniteLoad = false, commentsOpen = false }: PostsFeedProps) {
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useGetPostsInfinite()
   const { onEditPost, EditPostDialog } = useEditPostDialog()
   const [sortBy, setSortBy] = useState<SortOption>("oldest")
@@ -77,7 +78,12 @@ export function PostsFeed({ filter, infiniteLoad = false }: PostsFeedProps) {
 
       <div className="space-y-4 py-4 md:space-y-6 md:py-6">
         {sortedPosts.map((post) => (
-          <PostCard key={post.id} {...post} onEdit={() => onEditPost(post)} />
+          <PostCard
+            key={post.id}
+            {...post}
+            onEdit={() => onEditPost(post)}
+            commentsOpen={commentsOpen}
+          />
         ))}
 
         {infiniteLoad &&

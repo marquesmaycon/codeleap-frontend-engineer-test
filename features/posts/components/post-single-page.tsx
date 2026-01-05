@@ -33,10 +33,10 @@ export function PostSinglePage({ id }: { id: string }) {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="">
-        <div className="bg-primary flex w-full items-center justify-between p-4">
+      <div className="space-y-8">
+        <div className="bg-primary flex w-full items-center justify-between px-4 py-2">
           <h1 className="text-4xl font-bold text-white">{post.title}</h1>
-          {true && (
+          {isPostAuthor && (
             <div className="flex gap-4">
               <Button
                 size="icon"
@@ -57,12 +57,12 @@ export function PostSinglePage({ id }: { id: string }) {
             </div>
           )}
         </div>
-        <Link href={`/profile/${post.username}`}>
+        <Link href={`/profile/${post.username}`} className="hover:underline">
           <h3 className="text-lg font-bold text-[#777777]">@{capitalizeWords(post.username)}</h3>
         </Link>
       </div>
 
-      <div className="mt-8">{post.content}</div>
+      <div>{post.content}</div>
 
       <div className="mt-auto space-y-8">
         <div className="flex items-center gap-2">
@@ -75,8 +75,11 @@ export function PostSinglePage({ id }: { id: string }) {
             <ThumbsUp /> {post.likes?.length ?? 0}
           </Button>
           <ul className="text-muted-foreground flex items-center gap-2 text-sm">
-            {post.likes?.map((l) => (
-              <li key={l.username}>{l.username}</li>
+            {post.likes?.map(({ username }, i, a) => (
+              <li key={username}>
+                {username}
+                {i < a.length - 1 ? "," : ""}
+              </li>
             ))}
           </ul>
         </div>

@@ -12,6 +12,7 @@ export function UserComments({ username }: UserCommentsProps) {
       filter={(p) =>
         p.comments?.some((c) => c.username.toLowerCase() === username?.toLowerCase()) ?? false
       }
+      commentsOpen
     />
   )
 }
