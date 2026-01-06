@@ -130,8 +130,11 @@
   html {
     scrollbar-gutter: stable;
   }
-  
+
   body {
-    @apply bg-background text-foreground;
+  }
+
+  body[data-scroll-locked="1"] {
+    margin-right: 0 !important;
   }
 }
