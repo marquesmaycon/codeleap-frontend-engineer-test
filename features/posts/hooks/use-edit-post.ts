@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 import { api } from "@/lib/api"
 
@@ -20,6 +21,10 @@ export const useEditPost = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(getPostsInfiniteQueryOptions)
+      toast.success("Post edited successfully")
+    },
+    onError: (err) => {
+      toast.error("Failed to edit the post. Please try again.", { description: err.message })
     }
   })
 }

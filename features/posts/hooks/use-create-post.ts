@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from "sonner"
 
 import { api } from "@/lib/api"
 
@@ -20,7 +21,11 @@ export const useCreatePost = () => {
       return await res.json()
     },
     onSuccess: () => {
+      toast.success("Post created successfully")
       queryClient.invalidateQueries({ queryKey: getPostsInfiniteQueryOptions.queryKey })
+    },
+    onError: (err) => {
+      toast.error("Failed to create the post. Please try again.", { description: err.message })
     }
   })
 }

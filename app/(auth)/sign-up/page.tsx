@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation"
 
+import { ThemeSwitcher } from "@/components/theme-switcher"
 import { getUser } from "@/features/auth/actions"
 import SignUpForm from "@/features/auth/components/sign-up-form"
 
@@ -12,6 +13,9 @@ export default async function SignUpPage() {
 
   return (
     <div className="bg-primary/20 flex min-h-screen items-center justify-center p-4">
+      <div className="absolute top-6 right-6 md:top-12 md:right-12">
+        <ThemeSwitcher />
+      </div>
       <SignUpForm />
     </div>
   )

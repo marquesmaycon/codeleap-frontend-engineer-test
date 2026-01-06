@@ -2,6 +2,7 @@ import "./globals.css";
 
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { Toaster } from "sonner"
 
 import Providers from "./providers"
 
@@ -26,7 +27,10 @@ export default function RootLayout({
       <body
         className={`${roboto.variable} mx-auto flex min-h-screen flex-col font-serif antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <Toaster richColors />
+        </Providers>
       </body>
     </html>
   )
