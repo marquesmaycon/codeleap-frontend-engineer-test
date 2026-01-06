@@ -87,8 +87,8 @@ export function PostSinglePage({ id }: { id: string }) {
         <PostComments {...post} />
       </div>
 
-      <ConfirmDialog />
-      <EditPostDialog />
+      {ConfirmDialog}
+      {EditPostDialog}
     </div>
   )
 }

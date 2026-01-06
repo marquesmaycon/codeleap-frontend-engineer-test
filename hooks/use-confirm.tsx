@@ -10,7 +10,7 @@ type UseConfirmProps = {
   variant: ButtonProps["variant"]
 }
 
-type UseConfirmReturn = [() => JSX.Element, () => Promise<unknown>]
+type UseConfirmReturn = [JSX.Element, () => Promise<unknown>]
 
 type StateProps = {
   resolve: (value: boolean) => void
@@ -43,27 +43,25 @@ export const useConfirm = ({
     handleClose()
   }
 
-  const ConfirmationDialog = () => {
-    return (
-      <ResponsiveModal open={promise != null} onOpenChange={handleClose}>
-        <DialogTitle className="sr-only">{title}</DialogTitle>
-        <div className="border-none shadow-none">
-          <div className="p-6">
-            <h4 className="text-[22px] font-bold">{title}</h4>
+  const ConfirmationDialog = (
+    <ResponsiveModal open={promise != null} onOpenChange={handleClose}>
+      <DialogTitle className="sr-only">{title}</DialogTitle>
+      <div className="border-none shadow-none">
+        <div className="p-6">
+          <h4 className="text-[22px] font-bold">{title}</h4>
 
-            <div className="flex w-full items-center justify-end gap-4 pt-4 md:flex-row">
-              <Button onClick={handleCancel} variant="outline">
-                Cancel
-              </Button>
-              <Button onClick={handleConfirm} variant={variant}>
-                {actionLabel}
-              </Button>
-            </div>
+          <div className="flex w-full items-center justify-end gap-4 pt-4 md:flex-row">
+            <Button onClick={handleCancel} variant="outline">
+              Cancel
+            </Button>
+            <Button onClick={handleConfirm} variant={variant}>
+              {actionLabel}
+            </Button>
           </div>
         </div>
-      </ResponsiveModal>
-    )
-  }
+      </div>
+    </ResponsiveModal>
+  )
 
   return [ConfirmationDialog, confirm]
 }

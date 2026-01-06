@@ -107,7 +107,7 @@ export function PostCard({
           </CollapsibleContent>
         </Collapsible>
       </CardFooter>
-      <ConfirmDialog />
+      {ConfirmDialog}
     </Card>
   )
 }

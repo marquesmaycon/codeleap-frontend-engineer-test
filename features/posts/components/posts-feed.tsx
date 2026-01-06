@@ -102,7 +102,7 @@ export function PostsFeed({ filter, infiniteLoad = false, commentsOpen = false }
           ))}
       </div>
 
-      <EditPostDialog />
+      {EditPostDialog}
     </>
   )
 }

@@ -10,20 +10,26 @@ export function useEditPostDialog() {
   const [dialog, setDialog] = useState(false)
 
   function onEditPost(post: Post) {
-    setDialog(true)
     setCrrPost(post)
+    setDialog(true)
   }
 
   function onCancelEdit() {
     setDialog(false)
-    setCrrPost(undefined)
   }
 
-  const EditPostDialog = () => (
-    <Dialog open={dialog} onOpenChange={setDialog}>
+  function handleOpenChange(open: boolean) {
+    setDialog(open)
+    if (!open) {
+      setTimeout(() => setCrrPost(undefined), 300)
+    }
+  }
+
+  const EditPostDialog = (
+    <Dialog open={dialog} onOpenChange={handleOpenChange}>
       <DialogContent>
         <DialogTitle className="sr-only">Edit Post</DialogTitle>
-        <EditPostForm post={crrPost} onCancel={onCancelEdit} />
+        {crrPost && <EditPostForm post={crrPost} onCancel={onCancelEdit} />}
       </DialogContent>
     </Dialog>
   )
