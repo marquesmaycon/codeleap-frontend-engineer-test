@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${roboto.variable} mx-auto flex min-h-screen flex-col font-serif antialiased`}
+        className={`${roboto.variable} bg-background mx-auto flex min-h-screen flex-col font-serif antialiased`}
       >
         <Providers>
           {children}

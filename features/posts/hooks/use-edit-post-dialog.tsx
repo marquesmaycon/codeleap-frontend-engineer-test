@@ -27,7 +27,7 @@ export function useEditPostDialog() {
 
   const EditPostDialog = (
     <Dialog open={dialog} onOpenChange={handleOpenChange}>
-      <DialogContent>
+      <DialogContent className="md:max-w-165">
         <DialogTitle className="sr-only">Edit Post</DialogTitle>
         {crrPost && <EditPostForm post={crrPost} onCancel={onCancelEdit} />}
       </DialogContent>

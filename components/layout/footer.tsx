@@ -9,7 +9,7 @@ export default function Footer() {
           <ThemeSwitcher />
         </div>
         <small className="text-white">
-          This is a test project for CodeLeap frontend engineer position.
+          This is a coding test for CodeLeap Frontend Engineer position.
         </small>
         <p className="text-sm text-white">
           <span>Build by </span>

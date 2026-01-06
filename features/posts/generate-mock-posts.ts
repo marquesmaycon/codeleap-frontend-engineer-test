@@ -16,7 +16,7 @@ export const generateMockPosts = (
       content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. This is page ${page + 1}, post ${i + 1}. 
     
     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.`,
-      created_datetime: new Date(2023, 0, 1 + page * 5 + i).toISOString()
+      created_datetime: new Date(Date.now() - postIndex * 3600000).toISOString()
     }
   })
 }
