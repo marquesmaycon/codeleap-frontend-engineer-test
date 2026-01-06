@@ -55,7 +55,7 @@ export function PostsFeed({ filter, infiniteLoad = false, commentsOpen = false }
 
   return (
     <>
-      <div className="mb-4 flex justify-end">
+      <div className="my-4 flex justify-end">
         <Select value={sortBy} onValueChange={(value) => setSortBy(value as SortOption)}>
           <SelectTrigger>
             <SelectValue placeholder="Order" />
@@ -80,9 +80,9 @@ export function PostsFeed({ filter, infiniteLoad = false, commentsOpen = false }
         {sortedPosts.map((post) => (
           <PostCard
             key={post.id}
-            {...post}
             onEdit={() => onEditPost(post)}
             commentsOpen={commentsOpen}
+            {...post}
           />
         ))}
 

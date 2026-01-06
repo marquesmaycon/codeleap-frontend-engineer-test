@@ -82,12 +82,12 @@ export function PostCard({
           </Link>
           <span className="text-right text-[#777777]">{dayjs(created_datetime).fromNow()}</span>
         </div>
-        <p className="whitespace-pre-line">{content}</p>
+        <p className="text-sm whitespace-pre-line md:text-base">{content}</p>
       </CardContent>
 
       <CardFooter>
         <Collapsible className="flex w-full flex-col" defaultOpen={commentsOpen}>
-          <div className="mb-8 ml-auto space-x-2">
+          <div className="ml-auto space-x-2">
             <Button
               variant={postLiked ? "default" : "outline"}
               className="ml-auto dark:text-white"
