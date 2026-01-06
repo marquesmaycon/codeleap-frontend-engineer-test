@@ -6,7 +6,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function capitalizeWords(text: string): string {
-  return text
+  const decodedText = decodeURIComponent(text)
+  return decodedText
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ")

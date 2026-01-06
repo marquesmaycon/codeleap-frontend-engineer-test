@@ -1,13 +1,15 @@
 "use client"
 
 import { Trash } from "lucide-react"
+import Link from "next/link"
+import { useParams } from "next/navigation"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { useUser } from "@/features/auth/hooks/use-user"
-import { capitalizeWords } from "@/lib/utils"
+import { capitalizeWords, cn } from "@/lib/utils"
 
 import { useCommentPost } from "../hooks/use-comment-post"
 import { useDeleteComment } from "../hooks/use-delete-comment"
@@ -16,6 +18,10 @@ import type { Post } from "../types"
 type PostCommentsProps = Pick<Post, "id" | "username" | "comments">
 
 export function PostComments({ id, comments, username, ...props }: PostCommentsProps) {
+  const params = useParams<{ username: string }>()
+
+  const decodedUsername = params.username ? decodeURIComponent(params.username) : undefined
+
   const [comment, setComment] = useState("")
   const { username: crrUsername } = useUser()
 
@@ -30,15 +36,21 @@ export function PostComments({ id, comments, username, ...props }: PostCommentsP
   const isPostAuthor = crrUsername?.toLowerCase() === username?.toLowerCase()
 
   return (
-    <div {...props}>
+    <div className="mt-8" {...props}>
       <ul>
         {comments?.map((c, index) => {
           const isCommentAuthor = crrUsername?.toLowerCase() === c.username?.toLowerCase()
           return (
             <li key={index} className="relative mb-8 border-b border-gray-200 pb-4">
-              <p className="text-muted-foreground text-sm font-semibold">
+              <Link
+                href={`/profile/${c.username}`}
+                className={cn(
+                  "text-muted-foreground text-sm font-semibold hover:underline",
+                  decodedUsername === c.username && "bg-primary p-px text-white"
+                )}
+              >
                 @{capitalizeWords(c.username)}
-              </p>
+              </Link>
               <p className="pr-12 text-sm whitespace-pre-line">{c.comment}</p>
               {(isPostAuthor || isCommentAuthor) && (
                 <Button

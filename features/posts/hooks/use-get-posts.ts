@@ -1,5 +1,6 @@
 import { infiniteQueryOptions, useInfiniteQuery } from "@tanstack/react-query"
 
+import { getUser } from "@/features/auth/actions"
 import { api, type Pagination } from "@/lib/api"
 import { delay } from "@/lib/utils"
 
@@ -17,16 +18,16 @@ export const getPostsInfiniteQueryOptions = infiniteQueryOptions({
       const currentPage = +pageParam
       const postsPerPage = 5
       const totalPages = 4
-      const mockResults = generateMockPosts(currentPage, postsPerPage)
+      const username = await getUser()
 
-      const data: Pagination<Post> = {
+      const mockResults = generateMockPosts(currentPage, postsPerPage, username)
+
+      return {
         count: totalPages * postsPerPage,
         next: currentPage < totalPages - 1 ? String(currentPage + 1) : null,
         previous: currentPage > 0 ? String(currentPage - 1) : null,
         results: mockResults
       }
-
-      return data
     }
 
     const res = await api.get<Pagination<Post>>("careers/", {

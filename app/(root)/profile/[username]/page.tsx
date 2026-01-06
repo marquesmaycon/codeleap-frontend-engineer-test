@@ -12,15 +12,16 @@ type ProfilePageProps = {
 
 export default async function ProfilePage({ params }: ProfilePageProps) {
   const { username } = await params
+  const decodedUsername = decodeURIComponent(username)
   const currentUser = await getUser()
 
-  const isMyProfile = currentUser?.toLowerCase() === username.toLowerCase()
+  const isMyProfile = currentUser?.toLowerCase() === decodedUsername.toLowerCase()
 
   return (
     <div className="mx-auto w-full max-w-200 flex-1 p-4 pt-26 md:p-6 md:pt-26">
       <div className="flex items-center justify-between gap-4">
         <div className="bg-primary w-fit px-4 py-2">
-          <h1 className="text-4xl font-bold text-white">@{capitalizeWords(username)}</h1>
+          <h1 className="text-4xl font-bold text-white">@{capitalizeWords(decodedUsername)}</h1>
         </div>
         {isMyProfile && <LogoutButton />}
       </div>
@@ -32,13 +33,13 @@ export default async function ProfilePage({ params }: ProfilePageProps) {
           <TabsTrigger value="likes">Likes</TabsTrigger>
         </TabsList>
         <TabsContent value="posts">
-          <UserPosts username={username} />
+          <UserPosts username={decodedUsername} />
         </TabsContent>
         <TabsContent value="comments">
-          <UserComments username={username} />
+          <UserComments username={decodedUsername} />
         </TabsContent>
         <TabsContent value="likes">
-          <UserLikes username={username} />
+          <UserLikes username={decodedUsername} />
         </TabsContent>
       </Tabs>
     </div>

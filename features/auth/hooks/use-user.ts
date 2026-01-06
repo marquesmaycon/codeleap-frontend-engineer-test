@@ -10,7 +10,7 @@ export function useUser() {
 
   useEffect(() => {
     getUser()
-      .then((user) => setUsername(user))
+      .then((user) => setUsername(decodeURIComponent(user ?? "")))
       .finally(() => setIsLoading(false))
   }, [])
 
