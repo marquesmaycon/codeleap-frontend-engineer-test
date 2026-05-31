@@ -1,160 +1,73 @@
 # CodeLeap Frontend Engineer Test
 
-A modern, full-featured social media platform built with Next.js 16, demonstrating advanced React patterns, state management, and UI/UX best practices.
+Desafio tecnico frontend desenvolvido com Next.js, componentizacao, consumo de API e experiencia responsiva.
 
-## 🔗 Live Demo
+![Next.js 16](https://img.shields.io/badge/Nextjs_16-20232A?style=flat-square)
+![React 19](https://img.shields.io/badge/React_19-20232A?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-20232A?style=flat-square)
+![TanStack Query](https://img.shields.io/badge/TanStack_Query-20232A?style=flat-square)
+![Ky](https://img.shields.io/badge/Ky-20232A?style=flat-square)
+![Radix UI](https://img.shields.io/badge/Radix_UI-20232A?style=flat-square)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-20232A?style=flat-square)
+![Day.js](https://img.shields.io/badge/Dayjs-20232A?style=flat-square)
 
-Experience it here: https://codeleap-network.mklly.com.br/sign-up
+## Demo
 
-## 🚀 Key Features
+Projeto ao vivo: [codeleap-frontend-engineer-test.vercel.app](https://codeleap-frontend-engineer-test.vercel.app)
 
-### 💻 **Modern Tech Stack**
-- **Next.js 16** with App Router and Server Components
-- **React 19** with latest features and optimizations
-- **TypeScript** for type-safe development
-- **TailwindCSS 4** for modern, responsive styling
-- **TanStack Query** for efficient server state management
+## Sobre
 
-### 🏗️ **Advanced Architecture**
-- **Feature-based architecture** for scalability and maintainability
-- **Custom hooks** for reusable business logic
-- **Optimistic updates** for instant user feedback
-- **Infinite scrolling** with automatic pagination
-- **Server-side rendering** for optimal performance
+Desafio tecnico frontend desenvolvido com Next.js, componentizacao, consumo de API e experiencia responsiva.
 
-### ✨ **User Experience**
-- **Dark/Light theme** with seamless switching
-- **Responsive design** with mobile-first approach
-- **Real-time interactions** (likes, comments, posts)
-- **Loading states** and skeleton screens
-- **Toast notifications** for user feedback
-- **Confirmation dialogs** for destructive actions
+O objetivo deste repositorio e demonstrar uma implementacao clara, organizada e facil de avaliar, com documentacao objetiva para recrutadores e pessoas tecnicas entenderem rapidamente o contexto do projeto.
 
-### 🎯 **Feature Set**
-- ✅ User authentication and profiles
-- ✅ Create, read, update, delete posts
-- ✅ Like and unlike posts
-- ✅ Comment on posts
-- ✅ User profile pages with activity tabs
-- ✅ Post detail pages with comments
-- ✅ Infinite scroll feed
+## Funcionalidades
 
-## 🛠️ Technical Highlights
+- Listagem de posts.
+- Criacao, edicao e remocao.
+- Consumo de API.
+- Cache com TanStack Query.
+- UI responsiva.
+- Feedback visual.
 
-### 🔄 **State Management**
-- **TanStack Query (React Query)** for server state
-  - Automatic caching and invalidation
-  - Optimistic updates for instant UI feedback
-  - Background refetching
-  - Infinite queries for pagination
+## Stack
 
-### 🧩 **Component Architecture**
-- **Shadcn/ui** components for consistent design system
-- **Radix UI** primitives for accessibility
-- **Responsive Modal/Drawer** pattern (modal on desktop, drawer on mobile)
-- **Compound components** for flexible composition
+- **Next.js 16**
+- **React 19**
+- **TypeScript**
+- **TanStack Query**
+- **Ky**
+- **Radix UI**
+- **Tailwind CSS**
+- **Day.js**
 
-### ⚡ **Performance Optimizations**
-- Server Components for reduced client-side JavaScript
-- Lazy loading and code splitting
-- Optimized images and assets
-- Efficient re-rendering with React 19
-
-### 👨‍💻 **Developer Experience**
-- ESLint with custom rules
-- Prettier with Tailwind plugin
-- Auto-sorting imports
-- Type-safe API layer
-- Clean folder structure
-
-## 📁 Project Structure
-
-```
-app/              # Next.js App Router
-  (auth)/         # Authentication routes
-  (root)/         # Main application routes
-components/       # Shared UI components
-  ui/             # Base UI components (Shadcn)
-  layout/         # Layout components
-features/         # Feature-based modules
-  auth/           # Authentication logic
-  posts/          # Posts management
-  user/           # User profiles
-hooks/            # Custom React hooks
-lib/              # Utilities and configurations
-```
-
-## ✨ Design Patterns
-
-- **Custom Hooks** for logic reusability
-- **Compound Components** for flexible APIs
-- **Render Props** pattern for shared behavior
-- **Provider Pattern** for global state
-
-## 🚀 Getting Started
-
-### 📋 Prerequisites
-- Node.js 20 or higher
-- npm, yarn, pnpm, or bun
-
-### ⚙️ Installation
+## Como executar
 
 ```bash
-# Install dependencies
+git clone https://github.com/marquesmaycon/codeleap-frontend-engineer-test.git
+cd codeleap-frontend-engineer-test
 npm install
-
-# Run development server
 npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the application.
+## Scripts disponiveis
 
-## 📦 Key Dependencies
+- `npm run dev`
+- `npm run build`
+- `npm run start`
+- `npm run lint`
 
-- **Next.js 16** - React framework with App Router
-- **TanStack Query** - Powerful data synchronization
-- **Radix UI** - Accessible component primitives
-- **Lucide React** - Beautiful icon library
-- **Day.js** - Lightweight date formatting
-- **Ky** - Modern HTTP client
-- **Sonner** - Toast notifications
-- **next-themes** - Theme management
+## Destaques tecnicos
 
-## 🎨 UI/UX Features
+- Projeto direto para avaliacao tecnica.
+- Mostra dominio de frontend moderno.
+- Boa organizacao de estado remoto e interface.
 
-- 📱 Fully responsive design (mobile, tablet, desktop)
-- ♿ Accessible components (WCAG compliant)
-- 🎭 Smooth animations and transitions
-- ⏳ Loading states and error handling
-- 📝 Empty states with helpful messages
-- 🛡️ Confirmation dialogs for safety
+## Repositorio
 
-## 🧪 Code Quality
+[Acessar repositorio no GitHub](https://github.com/marquesmaycon/codeleap-frontend-engineer-test)
 
-- 🔒 **TypeScript** for type safety
-- ✅ **ESLint** for code consistency
-- 🎯 **Prettier** for code formatting
-- 📦 **Import sorting** for clean imports
-- 🎨 **Consistent code** style across the project
-
-## 🌟 Highlights for Reviewers
-
-1. 🏗️ **Clean Architecture**: Feature-based structure that scales
-2. ⚛️ **Modern React**: Leveraging latest React 19 and Next.js 16 features
-3. ⚡ **Performance**: Optimized with server components and caching
-4. ✨ **UX Excellence**: Smooth interactions with optimistic updates
-5. 🔒 **Type Safety**: Full TypeScript coverage
-6. ♿ **Accessibility**: WCAG compliant components
-7. 📱 **Responsive Design**: Works seamlessly on all devices
-8. 👨‍💻 **Developer Experience**: Well-organized code with clear patterns
-
-## 👨‍💻 Autor
+---
 
 <div align="center">
   <img src="https://github.com/marquesmaycon.png" width="100px" style="border-radius: 50%"/>
@@ -162,10 +75,8 @@ Open [http://localhost:3000](http://localhost:3000) to see the application.
   <strong>Maycon Marques</strong>
   <br/>
   <br/>
-  
+
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mayconhenrique/)
   [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github&logoColor=white)](https://github.com/marquesmaycon)
   [![Email](https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white)](mailto:mayconmarquesh@gmail.com)
-
-  ### Feito com ❤️ e muita 🎵
 </div>
